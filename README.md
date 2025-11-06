@@ -1,126 +1,145 @@
-#!/bin/bash
-# Script para criar estrutura do PromptForge
-# Execute com: bash create-structure.sh
+# 🔨 PromptForge
 
-echo "🔨 Criando estrutura do PromptForge..."
+> **Forjando prompts que transformam código em excelência**
 
-# Array com todas as LLMs
-llms=(
-  "Claude"
-  "GPT"
-  "Gemini"
-  "Grok"
-  "DeepSeek"
-  "Llama"
-  "Mistral"
-  "Cohere"
-  "Perplexity"
-  "Qwen"
-  "Yi"
-  "Falcon"
-  "Copilot"
-  "Cursor"
-  "Codeium"
-  "Tabnine"
-  "Outros"
-)
+Um repositório colaborativo mantido pela comunidade para compartilhar prompts de desenvolvimento otimizados para diferentes LLMs. Aqui você encontra instruções testadas e refinadas que extraem o melhor de cada modelo de IA.
 
-# Array com as categorias internas
-categories=(
-  "desenvolvimento-web"
-  "backend"
-  "frontend"
-  "mobile"
-  "debugging"
-  "refactoring"
-  "code-review"
-  "testing"
-  "arquitetura"
-  "performance"
-  "seguranca"
-  "documentacao"
-  "templates"
-  "workflow"
-)
+## 🎯 Objetivo
 
-# Criar pasta raiz se não existir
-mkdir -p PromptForge
-cd PromptForge
+Centralizar conhecimento sobre como comunicar efetivamente com diferentes LLMs para obter:
+- Código de alta qualidade
+- Arquiteturas bem pensadas
+- Debugging eficiente
+- Documentação clara
+- Testes abrangentes
+- Refatorações inteligentes
 
-# Contadores
-created_count=0
-skipped_count=0
+## 📁 Estrutura do Projeto
+```
+PromptForge/
+├── Claude/
+│   ├── desenvolvimento-web/
+│   ├── backend/
+│   ├── frontend/
+│   ├── debugging/
+│   ├── refactoring/
+│   └── documentacao/
+├── GPT/
+│   └── (mesma estrutura)
+├── Gemini/
+│   └── (mesma estrutura)
+├── Grok/
+│   └── (mesma estrutura)
+├── DeepSeek/
+│   └── (mesma estrutura)
+├── Llama/
+│   └── (mesma estrutura)
+└── Outros/
+    └── (mesma estrutura)
+```
 
-# Criar estrutura para cada LLM
-for llm in "${llms[@]}"; do
-  echo "📁 Processando: $llm"
-  
-  # Criar pasta principal da LLM se não existir
-  if [ ! -d "$llm" ]; then
-    mkdir -p "$llm"
-    echo "  ✅ Pasta $llm criada"
-  else
-    echo "  ⏭️  Pasta $llm já existe"
-  fi
-  
-  # Criar subpastas de categorias
-  for category in "${categories[@]}"; do
-    if [ ! -d "$llm/$category" ]; then
-      mkdir -p "$llm/$category"
-      echo "    ✅ Subpasta $category criada"
-      ((created_count++))
-    else
-      echo "    ⏭️  Subpasta $category já existe"
-      ((skipped_count++))
-    fi
-  done
-  
-  # Criar README.md vazio na pasta da LLM se não existir
-  if [ ! -f "$llm/README.md" ]; then
-    touch "$llm/README.md"
-    echo "  📄 README.md criado"
-  else
-    echo "  📄 README.md já existe"
-  fi
-done
+## 🚀 Como Usar
 
-echo ""
-echo "✅ Estrutura processada com sucesso!"
-echo ""
-echo "📊 Resumo:"
-echo "- ${#llms[@]} LLMs processadas"
-echo "- ${#categories[@]} categorias por LLM"
-echo "- $created_count pastas criadas"
-echo "- $skipped_count pastas já existiam"
-echo "- Total de pastas: $((${#llms[@]} * ${#categories[@]} + ${#llms[@]})) pastas"
-echo ""
-echo "📂 Estrutura em: $(pwd)"
-echo ""
-echo "🚀 Próximos passos:"
-echo "1. cd PromptForge"
-echo "2. git init (se ainda não inicializado)"
-echo "3. Adicionar o README.md principal"
-echo "4. git add ."
-echo "5. git commit -m 'feat: estrutura inicial do PromptForge'"
+1. Navegue até a pasta da LLM que você está usando
+2. Escolha a categoria do seu problema
+3. Copie e adapte o prompt para seu contexto específico
+4. Refine conforme necessário
 
-# Criar um arquivo de resumo
-cat > STRUCTURE.txt << EOF
-PromptForge - Estrutura de Pastas
-==================================
+## 🤝 Como Contribuir
 
-Total de LLMs: ${#llms[@]}
-Total de Categorias: ${#categories[@]}
-Pastas criadas nesta execução: $created_count
-Pastas que já existiam: $skipped_count
+### Adicionando um Novo Prompt
 
-LLMs Incluídas:
-$(printf '  - %s\n' "${llms[@]}")
+1. Fork este repositório
+2. Navegue até a pasta da LLM apropriada
+3. Crie um arquivo `.md` com nome descritivo
+4. Use o template abaixo:
+```markdown
+# [Nome do Prompt]
 
-Categorias por LLM:
-$(printf '  - %s\n' "${categories[@]}")
+## Contexto
+Para que serve este prompt e quando utilizá-lo.
 
-Gerado em: $(date)
-EOF
+## Prompt
 
-echo ""
-echo "📄 Arquivo STRUCTURE.txt atualizado com o resumo"
+\```
+[Seu prompt aqui]
+\```
+
+## Exemplo de Uso
+
+### Input
+\```
+[Exemplo de entrada]
+\```
+
+### Output Esperado
+\```
+[Exemplo de saída]
+\```
+
+## Dicas
+- Dica 1
+- Dica 2
+
+## Versão da LLM Testada
+- Claude Sonnet 4.5 (ou outra versão)
+
+## Contribuidor
+[@seu-usuario](link-github)
+```
+
+### Diretrizes de Contribuição
+
+- ✅ Teste o prompt antes de submeter
+- ✅ Inclua exemplos reais de uso
+- ✅ Especifique a versão da LLM testada
+- ✅ Seja específico no contexto de uso
+- ✅ Use português ou inglês (indicar no título)
+- ❌ Não inclua informações sensíveis
+- ❌ Não copie prompts proprietários
+
+## 📊 Categorias Principais
+
+### Desenvolvimento
+- **Web Full-Stack**: React, Vue, Angular, Node.js, etc.
+- **Backend**: APIs, microsserviços, bancos de dados
+- **Frontend**: UI/UX, componentes, responsividade
+- **Mobile**: React Native, Flutter, Swift, Kotlin
+
+### Qualidade de Código
+- **Debugging**: Identificação e correção de bugs
+- **Refactoring**: Melhoria de código existente
+- **Code Review**: Análise crítica de código
+- **Testing**: Testes unitários, integração, E2E
+
+### Arquitetura
+- **Design Patterns**: Padrões de projeto
+- **Arquitetura de Software**: Clean Architecture, DDD, etc.
+- **Performance**: Otimização de código
+- **Segurança**: Best practices de segurança
+
+### Documentação
+- **README**: Documentação de projetos
+- **API Docs**: Documentação de APIs
+- **Comentários**: Código autodocumentado
+- **Diagramas**: Arquitetura visual
+
+## 🏆 Top Contribuidores
+
+<!-- Lista será atualizada automaticamente -->
+
+## 📜 Licença
+
+MIT License - Sinta-se livre para usar, modificar e distribuir.
+
+## 🌟 Star History
+
+Se este projeto te ajudou, considere dar uma ⭐!
+
+## 📞 Comunidade
+
+- Abra uma [Issue](link) para sugestões
+
+---
+
+**Feito com ❤️ pela comunidade de desenvolvedores**
