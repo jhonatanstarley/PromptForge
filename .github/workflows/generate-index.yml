@@ -6,6 +6,9 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,36 +16,44 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Generate index file
         run: |
           echo "# 📂 Índice de Pastas" > INDEX.md
           echo "" >> INDEX.md
+          echo "_Atualizado automaticamente em $(date '+%d/%m/%Y às %H:%M')_" >> INDEX.md
+          echo "" >> INDEX.md
 
-          # Percorre todas as pastas (ignorando .git e similares)
-          find . -type d ! -path './.git*' | while read dir; do
-            # Lista apenas arquivos "reais" dentro da pasta (exclui .gitkeep)
-            files=$(find "$dir" -maxdepth 1 -type f ! -name ".gitkeep")
-
-            # Se houver arquivos, adiciona a pasta e os arquivos ao índice
-            if [ -n "$files" ]; then
-              dirname=$(echo "$dir" | sed 's|^\./||')
-              echo "## ${dirname}" >> INDEX.md
-
-              # Lista os arquivos com links clicáveis
-              for f in $files; do
-                fname=$(basename "$f")
-                echo "- [${fname}](${f})" >> INDEX.md
-              done
-
-              echo "" >> INDEX.md
-            fi
+          # Encontra todas as pastas que contêm arquivos (exceto .gitkeep)
+          find . -type f ! -path './.git/*' ! -name '.gitkeep' -printf '%h\n' | sort -u | while read dir; do
+            # Remove o "./" inicial
+            dirname="${dir#./}"
+            
+            # Se for a raiz, pula
+            [ "$dirname" = "." ] && continue
+            
+            echo "## 📁 ${dirname}" >> INDEX.md
+            
+            # Lista os arquivos da pasta (exceto .gitkeep)
+            find "$dir" -maxdepth 1 -type f ! -name '.gitkeep' -printf '%f\n' | sort | while read fname; do
+              filepath="${dirname}/${fname}"
+              echo "- [${fname}](${filepath})" >> INDEX.md
+            done
+            
+            echo "" >> INDEX.md
           done
 
       - name: Commit and push updated index
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add INDEX.md
-          git commit -m "🔄 Atualizar índice automático" || echo "Nenhuma alteração"
-          git push
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          if git diff --quiet INDEX.md; then
+            echo "Nenhuma alteração no índice"
+          else
+            git add INDEX.md
+            git commit -m "🔄 Atualizar índice automático"
+            git push
+          fi
