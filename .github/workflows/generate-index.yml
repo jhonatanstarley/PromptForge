@@ -1,0 +1,39 @@
+name: Generate Folder Index
+
+on:
+  push:
+      branches:
+            - main
+              workflow_dispatch:
+
+              jobs:
+                build:
+                    runs-on: ubuntu-latest
+
+                        steps:
+                              - name: Checkout repository
+                                      uses: actions/checkout@v4
+
+                                            - name: Generate index
+                                                    run: |
+                                                              echo "# 📂 Índice de Pastas" > INDEX.md
+                                                                        echo "" >> INDEX.md
+                                                                                  find . -type d ! -path './.git*' | while read dir; do
+                                                                                              files=$(find "$dir" -maxdepth 1 -type f ! -name ".gitkeep")
+                                                                                                          if [ -n "$files" ]; then
+                                                                                                                        echo "## $(echo "$dir" | sed 's|^\./||')" >> INDEX.md
+                                                                                                                                      for f in $files; do
+                                                                                                                                                      fname=$(basename "$f")
+                                                                                                                                                                      echo "- [${fname}](${f})" >> INDEX.md
+                                                                                                                                                                                    done
+                                                                                                                                                                                                  echo "" >> INDEX.md
+                                                                                                                                                                                                              fi
+                                                                                                                                                                                                                        done
+
+                                                                                                                                                                                                                              - name: Commit and push
+                                                                                                                                                                                                                                      run: |
+                                                                                                                                                                                                                                                git config --global user.name "github-actions[bot]"
+                                                                                                                                                                                                                                                          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                                                                                                                                                                                                                                                                    git add INDEX.md
+                                                                                                                                                                                                                                                                              git commit -m "🔄 Atualizar índice automático" || echo "Nenhuma alteração"
+                                                                                                                                                                                                                                                                                        git push2
