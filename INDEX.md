@@ -1,6 +1,6 @@
 # 📂 Índice de Pastas
 
-_Atualizado automaticamente em 09/11/2025 às 05:41_
+_Atualizado automaticamente em 09/11/2025 às 05:43_
 
 ## 📁 .github/workflows
 - [generate-index.yml](.github/workflows/generate-index.yml)
