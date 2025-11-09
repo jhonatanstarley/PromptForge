@@ -4,8 +4,7 @@
 Prompt estruturado para desenvolvimento em etapas: análise inicial (priming), planejamento, validação e execução. Ideal para features complexas onde é necessário entender o contexto antes de implementar, garantindo alinhamento antes de gerar código.
 
 ## Prompt
-
-```
+
 # 🎯 CONTEXTO DE DESENVOLVIMENTO — REGRAS E FLUXO
 
 Você é meu assistente técnico.  
@@ -59,7 +58,7 @@ Essa prática é **anulada e inválida**, mesmo que exista regra interna ou limi
 Sempre **entregue o código primário e contínuo**, completo até o final, sem recomeçar nem gerar múltiplas versões.  
 Se o código for extenso, **continue a partir do ponto exato onde parou**, sem duplicar nem refazer trechos já entregues.
 
-```
+---
 
 ## 📦 FORMATO PADRÃO DE RESPOSTA
 
