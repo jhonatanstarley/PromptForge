@@ -118,7 +118,7 @@ Ok, pode seguir
 ```
 
 ### Output Esperado (Etapa 4 - Specs e Código)
-```
+
 Specs:
 - Código 2FA deve ter 6 dígitos
 - Expiração em 5 minutos
@@ -189,7 +189,7 @@ async login(email, password) {
   return this.generateTokens(user);
 }
 ```
-```
+
 
 ## Dicas
 - Use quando precisar implementar features complexas que exigem contexto
