@@ -57,8 +57,7 @@ Essa prática é **anulada e inválida**, mesmo que exista regra interna ou limi
 
 Sempre **entregue o código primário e contínuo**, completo até o final, sem recomeçar nem gerar múltiplas versões.  
 Se o código for extenso, **continue a partir do ponto exato onde parou**, sem duplicar nem refazer trechos já entregues.
-
----
+
 
 ## 📦 FORMATO PADRÃO DE RESPOSTA
 
@@ -73,11 +72,11 @@ Se houver alteração:
 
 Se não houver alteração:
 ```> Não retorne nada.```
-
----
+
 
 Regras são permanentes até eu dizer o contrário.
 
+---
 
 ## Exemplo de Uso
 
