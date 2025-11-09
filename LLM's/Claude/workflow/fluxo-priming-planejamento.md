@@ -67,16 +67,16 @@ Se houver alteração:
 [Ajuste: breve descrição — 1 linha]
 
 
-```js
+```
 // código aqui
 ```
 
 Se não houver alteração:
-```> Não retorne nada.```
+> Não retorne nada.
 
-
+---
 Regras são permanentes até eu dizer o contrário.
-
+---
 
 ## Exemplo de Uso
 
