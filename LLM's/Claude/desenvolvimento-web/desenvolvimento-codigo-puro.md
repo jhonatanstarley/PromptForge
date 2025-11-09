@@ -5,7 +5,7 @@ Prompt para desenvolvimento técnico focado em código limpo, sem documentação
 
 ## Prompt
 
-```
+
 # 🎯 CONTEXTO DO DIÁLOGO — REGRAS FIXAS
 
 Você está em um ambiente de desenvolvimento.  
@@ -73,7 +73,7 @@ Se não houve alteração:
 ⚙️ Mantenha o foco em código puro, limpo e compatível.  
 🚫 Proibido qualquer tipo de documento, guia ou explicação extensa.  
 ✅ Apenas código alterado, fiel e funcional.
-```
+
 
 ## Exemplo de Uso
 
@@ -83,7 +83,7 @@ Ajuste a função de autenticação para adicionar validação de email
 ```
 
 ### Output Esperado
-```
+
 [Ajuste: adicionada validação de email com regex no middleware de autenticação]
 
 ```js
@@ -97,7 +97,7 @@ function validateAuth(req, res, next) {
   next();
 }
 ```
-```
+
 
 ## Dicas
 - Use este prompt quando precisar de código direto, sem explicações
